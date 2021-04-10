@@ -1,8 +1,8 @@
 import React from 'react';
 
-const calculator = () => {
+const Calculator = () => {
     return (
-        <div className="calculator">
+        <div className="Calculator">
             <a>0</a>
             <a>1</a>
             <a>2</a>
@@ -13,4 +13,4 @@ const calculator = () => {
     );
 };
 
-export default userOutput;
+export default Calculator;
