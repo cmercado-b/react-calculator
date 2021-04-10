@@ -1,7 +1,21 @@
-.App {
-    text-align: center;
-    border: 2px solid #000000;
-    height: 655px;
-    margin: 10px;
-    padding: 20px;
+html {
+    box-sizing: border-box;
+    background-color: black;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+@media only screen {
+    .App {
+        border: 2px solid #000000;
+        height: 655px;
+        margin: 10px;
+        padding: 20px;
+    }
 }
