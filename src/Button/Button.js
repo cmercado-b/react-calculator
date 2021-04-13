@@ -1,20 +1,14 @@
 import React from 'react';
+import './Button.css';
+
+const operator = val => {
+    return !isNaN(val);
+};
 
 const button = (props) => {
-
-    const style = {
-        display: 'flex',
-        height: '70px',
-        width: '90px',
-        border: '2px outset #ffff00',
-        color: '#d0d0d0',
-        alignItems: 'center',
-        justifyContent: 'center',
-    };
-
     return (
-        <div>
-           <p style={style}>TEST</p>
+        <div className= {`Button ${operator(props.children) ? null : "Operator"}`}>
+            {props.children}
         </div>
     );
 };

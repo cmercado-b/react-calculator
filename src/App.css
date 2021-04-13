@@ -13,12 +13,28 @@ html {
     margin: 0;
     padding: 0;
 }
-@media (min-width: 320px) and (max-width: 480px) {
-    .App {
-        border: 2px solid #cc00ff;
-        height: 620px;
-        margin: 10px;
-        padding: 20px;
-        border-radius: 20px;
-    }
+
+.App {
+    position: absolute;
+    border: 2px solid #cc00ff;
+    height: 700px;
+    width: 480px;
+    top: 15px;
+    left: 530px;
+    border-radius: 15px;
+}
+
+.buttonContainer {
+    border: 2px solid #ffff00;
+    margin: 20px;
+    height: 480px;
+    border-radius: 15px;
+    padding: 40px 30px 30px;
+}
+
+.buttonRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
