@@ -5,10 +5,18 @@ import Button from './Button/Button.js';
 import Display from './Display/Display.js';
 
 class App extends Component {
+
+  state = {
+    displayValue: 0
+  };
+
+
    render() {
     return (
       <div className="App">
-          <Display />
+          <Display
+            onDisplay={this.state.displayValue}
+          />
           <div className="buttonContainer">
               <div className="buttonRow">
                 <Button>C</Button>
