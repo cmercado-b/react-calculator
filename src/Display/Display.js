@@ -5,7 +5,7 @@ import './Display.css';
 const display = (props) => {
     return (
         <div className="Display">
-            {props.onDisplay}
+            {props.children}
         </div>
     );
 };

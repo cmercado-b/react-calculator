@@ -3,49 +3,58 @@ import './App.css';
 
 import Button from './Button/Button.js';
 import Display from './Display/Display.js';
+import Clear from './Button/Clear.js';
 
 class App extends Component {
 
   state = {
-    displayValue: 0
+    display: "",
+    firstInt: "",
+    secondInt: "",
+    operator: ""
   };
 
+  displayHandler = val => {
+    this.setState( { display: this.state.display + val } );
+  }
+
+  clearDisplayHandler = () => {
+    this.setState( { display: "" } );
+  }
 
    render() {
     return (
       <div className="App">
-          <Display
-            onDisplay={this.state.displayValue}
-          />
+          <Display > { this.state.display } </Display>
           <div className="buttonContainer">
               <div className="buttonRow">
-                <Button>C</Button>
+                <Clear cleared={ this.clearDisplayHandler }>C</Clear>
                 <Button>±</Button>
                 <Button>%</Button>
                 <Button>*</Button>
               </div>
               <div className="buttonRow">
-                <Button>7</Button>
-                <Button>8</Button>
-                <Button>9</Button>
+                <Button clicked={ this.displayHandler }>7</Button>
+                <Button clicked={ this.displayHandler }>8</Button>
+                <Button clicked={ this.displayHandler }>9</Button>
                 <Button>÷</Button>
               </div>
               <div className="buttonRow">
-                <Button>4</Button>
-                <Button>5</Button>
-                <Button>6</Button>
+                <Button clicked={ this.displayHandler }>4</Button>
+                <Button clicked={ this.displayHandler }>5</Button>
+                <Button clicked={ this.displayHandler }>6</Button>
                 <Button>×</Button>
               </div>
               <div className="buttonRow">
-                <Button>1</Button>
-                <Button>2</Button>
-                <Button>3</Button>
+                <Button clicked={ this.displayHandler }>1</Button>
+                <Button clicked={ this.displayHandler }>2</Button>
+                <Button clicked={ this.displayHandler }>3</Button>
                 <Button>−</Button>
               </div>
               <div className="buttonRow">
-                <Button>0</Button>
                 <Button></Button>
-                <Button>.</Button>
+                <Button clicked={ this.displayHandler }>0</Button>
+                <Button clicked={ this.displayHandler }>.</Button>
                 <Button>+</Button>
               </div>
           </div>
