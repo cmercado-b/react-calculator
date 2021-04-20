@@ -1,13 +1,13 @@
 import React from 'react';
 import './Button.css';
 
-const operator = val => {
-    return !isNaN(val) || val === "." || val === "=";
+const del = val => {
+    return val === "C";
 };
 
 const clear = (props) => {
     return (
-        <div className={ `Button ${operator(props.children) ? null : "Operator"}` }  
+        <div className={ `Button ${del(props.children) ? "Del" : null}` }  
         onClick={ props.cleared }
         >
             {props.children}

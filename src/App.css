@@ -2,7 +2,7 @@
 
 html {
     box-sizing: border-box;
-    background-color: #000;
+    background-color: #f7f7f7;
     font-family: 'Ubuntu Mono', monospace;
 }
 
@@ -15,21 +15,34 @@ html {
 }
 
 .App {
-    position: absolute;
-    border: 2px solid #cc00ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+}
+
+.Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #36454F;
+    border-width: 10px;
+    border-color: #dcdcdc;
+    border-style: outset inset outset inset;
     height: 700px;
     width: 480px;
-    top: 15px;
-    left: 530px;
     border-radius: 15px;
+    box-shadow: 1px 1px 5px 5px #393c3f;
 }
 
 .buttonContainer {
-    border: 2px solid #ffff00;
+    background-color: #36454F;
     margin: 20px;
     height: 480px;
     border-radius: 15px;
-    padding: 40px 30px 30px;
+    padding: 20px 20px 10px 20px;
 }
 
 .buttonRow {
