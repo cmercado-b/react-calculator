@@ -9,11 +9,12 @@
     border: 3px outset #848884;
     color: #d0d0d0;
     font-size: 40px;
-    flex: 2 auto;
     cursor: pointer;
     margin: 5px;
     border-radius: 30px;
     font-weight: 700;
+    flex: 1 1 100px;
+    user-select: none;
 }
 
 .Operator {
