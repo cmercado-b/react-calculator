@@ -4,7 +4,7 @@ import './Display.css';
 
 const display = (props) => {
     return (
-        <div className="Display" aria-setsize={ props.limited }>
+        <div className="Display">
             {props.children}
         </div>
     );

@@ -9,13 +9,13 @@ class App extends Component {
 
   state = {
     display: "",
-    firstInt: "",
-    secondInt: "",
+    firstNum: "",
+    secondNum: "",
     operator: ""
   };
 
   displayHandler = (val) => {
-    this.setState( { display: this.state.display + val } );
+    this.setState( { display: (this.state.display + val).slice(0,10) } );
     console.log(val);
     console.log('Successfully Inputed');
   };
@@ -38,13 +38,7 @@ class App extends Component {
     } else {
       this.setState( {display: 'Syntax Error' } );
       console.log('Only one decimal point')
-    }
-  }
-
-  limitTextHandler = (val) => {
-    if (this.state.display.length > 11) {
-      console.log('Input 11 Character');
-    }; 
+    };
   };
 
   clearDisplayHandler = () => {
@@ -54,39 +48,96 @@ class App extends Component {
   };
 
   addHandler = (val) => {
+    this.state.firstNum = this.state.display;
+    this.setState( { display: "" } );
+    this.state.operator = "add";
+
     console.log(val);
     console.log('Addition');
   };
   
   subtractHandler = (val) => {
+    this.state.firstNum = this.state.display;
+    this.setState( { display: "" } );
+    this.state.operator = "minus";
+
     console.log(val);
     console.log('Subtraction');
   };
 
   multiplyHandler = (val) => {
+    this.state.firstNum = this.state.display;
+    this.setState( { display: "" } );
+    this.state.operator = "times";
+
     console.log(val);
     console.log('Multiplication');
   };
 
   percentHandler = (val) => {
+    this.state.firstNum = this.state.display;
+    this.setState( { display: "" } );
+    this.state.operator = "percent";
+    
     console.log(val);
-    console.log('Percentage');
+    console.log('Percentage');    
   };
 
   divideHandler = (val) => {
+    this.state.firstNum = this.state.display;
+    this.setState( { display: "" } );
+    this.state.operator = "divide";
+
     console.log(val);
     console.log('Division');
+  };
+  
+  rootHandler = (val) => {
+    this.state.firstNum = this.state.display;
+    this.setState( { display: "" } );
+    this.state.operator = "square";
+
+    console.log(val);
+    console.log('Square Root');
+  };
+
+  Evaluate = (val) => {
+    this.state.secondNum = this.state.display;
+
+    if (this.state.operator == "add") {
+      this.setState ( { display: (parseFloat(this.state.firstNum) +  
+        parseFloat(this.state.secondNum)).toFixed(2) } );
+    } 
+    else if (this.state.operator == "minus") {
+      this.setState ( { display: (parseFloat(this.state.firstNum) -  
+        parseFloat(this.state.secondNum).toFixed(2)) } );
+    }
+    else if (this.state.operator == "multiply") {
+      this.setState ( { display: (parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum)).toFixed(2) } );
+    }
+    else if (this.state.operator == "divide") {
+      this.setState( { display: (parseFloat(this.state.firstNum) / 
+        parseFloat(this.state.secondNum)).toFixed(2) } );
+    }
+    else if (this.state.operator == "percent") {
+      this.setState( { display: ((parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum)) / 100).toFixed(2) } );
+    }
+    else {
+      this.setState( { display: (Math.sqrt(this.state.firstNum)).toFixed(2) } );
+    }
   };
 
    render() {
     return (
       <div className="App">
           <div className="Container">
-            <Display limited={ this.limitTextHandler } > { this.state.display } </Display>
+            <Display limited={ this.limitTextHandler }> { this.state.display } </Display>
             <div className="buttonContainer">
                 <div className="buttonRow">
                   <Clear cleared={ this.clearDisplayHandler }>C</Clear>
-                  <Button clicked={ this.addHandler }>±</Button>
+                  <Button clicked={ this.rootHandler }>√</Button>
                   <Button clicked={ this.percentHandler }>%</Button>
                   <Button clicked={ this.multiplyHandler }>×</Button>
                 </div>
@@ -112,7 +163,7 @@ class App extends Component {
                   <Button clicked={ this.zeroHandler }>00</Button>
                   <Button clicked={ this.zeroHandler }>0</Button>
                   <Button clicked={ this.decimalPointHandler }>.</Button>
-                  <Button>=</Button>
+                  <Button clicked={ this.Evaluate }>=</Button>
                 </div>
             </div>
         </div>
