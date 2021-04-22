@@ -105,27 +105,27 @@ class App extends Component {
     this.state.secondNum = this.state.display;
 
     if (this.state.operator == "add") {
-      this.setState ( { display: (parseFloat(this.state.firstNum) +  
-        parseFloat(this.state.secondNum)).toFixed(2) } );
+      this.setState ( { display: parseFloat(this.state.firstNum) +  
+        parseFloat(this.state.secondNum) } );
     } 
     else if (this.state.operator == "minus") {
-      this.setState ( { display: (parseFloat(this.state.firstNum) -  
-        parseFloat(this.state.secondNum).toFixed(2)) } );
+      this.setState ( { display: parseFloat(this.state.firstNum) -  
+        parseFloat(this.state.secondNum) } );
     }
     else if (this.state.operator == "multiply") {
-      this.setState ( { display: (parseFloat(this.state.firstNum) *  
-        parseFloat(this.state.secondNum)).toFixed(2) } );
+      this.setState ( { display: parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum) } );
     }
     else if (this.state.operator == "divide") {
-      this.setState( { display: (parseFloat(this.state.firstNum) / 
-        parseFloat(this.state.secondNum)).toFixed(2) } );
+      this.setState( { display: parseFloat(this.state.firstNum) / 
+        parseFloat(this.state.secondNum) } );
     }
     else if (this.state.operator == "percent") {
-      this.setState( { display: ((parseFloat(this.state.firstNum) *  
-        parseFloat(this.state.secondNum)) / 100).toFixed(2) } );
+      this.setState( { display: (parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum)) / 100 } );
     }
     else {
-      this.setState( { display: (Math.sqrt(this.state.firstNum)).toFixed(2) } );
+      this.setState( { display: Math.sqrt(this.state.firstNum) } );
     }
   };
 
