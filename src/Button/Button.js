@@ -12,7 +12,7 @@ const equal = (val) => {
 const button = (props) => {
     return (
         <div className={ `Button ${operator(props.children) ? null : "Operator"} ${equal(props.children) ? "Equal" : null }` } 
-            onClick={ () => props.clicked(props.children) }
+            onClick={ () => props.clicked(props.children)}
         >
             {props.children}
         </div>

@@ -15,7 +15,7 @@ class App extends Component {
   };
 
   displayHandler = (val) => {
-    this.setState( { display: (this.state.display + val).slice(0,10) } );
+    this.setState( { display: (this.state.display + val).slice(0,11) } );
     console.log(val);
     console.log('Successfully Inputed');
   };
@@ -48,54 +48,54 @@ class App extends Component {
   };
 
   addHandler = (val) => {
-    this.state.firstNum = this.state.display;
+    this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
-    this.state.operator = "add";
+    this.setState( {operator: "add"} );
 
     console.log(val);
     console.log('Addition');
   };
   
   subtractHandler = (val) => {
-    this.state.firstNum = this.state.display;
+    this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
-    this.state.operator = "minus";
+    this.setState( {operator: "minus"} );
 
     console.log(val);
     console.log('Subtraction');
   };
 
   multiplyHandler = (val) => {
-    this.state.firstNum = this.state.display;
+    this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
-    this.state.operator = "times";
+    this.setState( {operator: "times"} );
 
     console.log(val);
     console.log('Multiplication');
   };
 
   percentHandler = (val) => {
-    this.state.firstNum = this.state.display;
+    this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
-    this.state.operator = "percent";
+    this.setState( {operator: "percent"} );
     
     console.log(val);
     console.log('Percentage');    
   };
 
   divideHandler = (val) => {
-    this.state.firstNum = this.state.display;
+    this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
-    this.state.operator = "divide";
+    this.setState( {operator: "divide"} );
 
     console.log(val);
     console.log('Division');
   };
   
   rootHandler = (val) => {
-    this.state.firstNum = this.state.display;
+    this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
-    this.state.operator = "square";
+    this.setState( {operator: "square"} );
 
     console.log(val);
     console.log('Square Root');
@@ -104,28 +104,57 @@ class App extends Component {
   Evaluate = (val) => {
     this.state.secondNum = this.state.display;
 
-    if (this.state.operator == "add") {
+    if (this.state.operator === "add") {
       this.setState ( { display: parseFloat(this.state.firstNum) +  
         parseFloat(this.state.secondNum) } );
+        
+        console.log(val);
+        console.log('Equal');
+        console.log(parseFloat(this.state.firstNum) +  
+        parseFloat(this.state.secondNum));
     } 
-    else if (this.state.operator == "minus") {
-      this.setState ( { display: parseFloat(this.state.firstNum) -  
-        parseFloat(this.state.secondNum) } );
+    else if (this.state.operator === "minus") {
+      this.setState ( { display: (parseFloat(this.state.firstNum) -  
+        parseFloat(this.state.secondNum)).toPrecision().slice(0,11)} );
+
+        console.log(val);
+        console.log('Equal');
+        console.log(parseFloat(this.state.firstNum) -  
+        parseFloat(this.state.secondNum));
     }
-    else if (this.state.operator == "multiply") {
-      this.setState ( { display: parseFloat(this.state.firstNum) *  
-        parseFloat(this.state.secondNum) } );
+    else if (this.state.operator === "times") {
+      this.setState ( { display: (parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum)).toPrecision().slice(0,11) } );
+
+        console.log(val);
+        console.log('Equal');
+        console.log(parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum));
     }
-    else if (this.state.operator == "divide") {
-      this.setState( { display: parseFloat(this.state.firstNum) / 
-        parseFloat(this.state.secondNum) } );
+    else if (this.state.operator === "divide") {
+      this.setState( { display: (parseFloat(this.state.firstNum) / 
+        parseFloat(this.state.secondNum)).toPrecision().slice(0,11) } );
+
+        console.log(val);
+        console.log('Equal');
+        console.log(parseFloat(this.state.firstNum) /  
+        parseFloat(this.state.secondNum));
     }
-    else if (this.state.operator == "percent") {
-      this.setState( { display: (parseFloat(this.state.firstNum) *  
-        parseFloat(this.state.secondNum)) / 100 } );
+    else if (this.state.operator === "percent") {
+      this.setState( { display: ((parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum)) / 100).toPrecision().slice(0,11) } );
+
+        console.log(val);
+        console.log('Equal');
+        console.log((parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum)) / 100)
     }
     else {
-      this.setState( { display: Math.sqrt(this.state.firstNum) } );
+      this.setState( { display: (Math.sqrt(this.state.firstNum)).toPrecision().slice(0,11) } );
+
+      console.log(val);
+      console.log('Equal');
+      console.log(Math.sqrt(this.state.firstNum));
     }
   };
 
@@ -133,7 +162,7 @@ class App extends Component {
     return (
       <div className="App">
           <div className="Container">
-            <Display limited={ this.limitTextHandler }> { this.state.display } </Display>
+            <Display> { this.state.display } </Display>
             <div className="buttonContainer">
                 <div className="buttonRow">
                   <Clear cleared={ this.clearDisplayHandler }>C</Clear>
