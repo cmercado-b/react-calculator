@@ -14,13 +14,17 @@ class App extends Component {
     operator: ""
   };
 
+  
   displayHandler = (val) => {
-    this.setState( { display: (this.state.display + val).slice(0,11) } );
+    const numbers = {'input': this.state.display + val };
+    localStorage.setItem('number', JSON.stringify(numbers));
+    this.setState( { display: (this.state.display + val).slice(0,10) } );
     console.log(val);
     console.log('Successfully Inputed');
   };
 
   zeroHandler = (val) => {
+    localStorage.setItem('zero', true);
     if (this.state.display !== "") {
       this.setState( {display: this.state.display + val } );
       console.log(val);
@@ -31,7 +35,9 @@ class App extends Component {
   };
 
   decimalPointHandler = (val) => {
+    localStorage.setItem('decimal', true);
     if (this.state.display.indexOf('.') === -1) {
+      localStorage.setItem('clickedValue', val);
       this.setState( {display: this.state.display + val } );
       console.log(val);
       console.log('Successfully Inputed Decimal Point');
@@ -42,21 +48,25 @@ class App extends Component {
   };
 
   clearDisplayHandler = () => {
+    localStorage.clear();
     this.setState( { display: "" } );
     console.clear();
     console.log('Successfully Cleared');
   };
 
   addHandler = (val) => {
+    localStorage.setItem('sumOperator', JSON.stringify(...val, val));
+    localStorage.setItem('firstInput', this.state.firstNum);
+    localStorage.setItem('secondInput', this.state.secondNum);
     this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
     this.setState( {operator: "add"} );
-
     console.log(val);
     console.log('Addition');
   };
   
   subtractHandler = (val) => {
+    localStorage.setItem('diffOperator', JSON.stringify(...val, val));
     this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
     this.setState( {operator: "minus"} );
@@ -66,6 +76,7 @@ class App extends Component {
   };
 
   multiplyHandler = (val) => {
+    localStorage.setItem('productOperator', JSON.stringify(...val, val));
     this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
     this.setState( {operator: "times"} );
@@ -75,6 +86,7 @@ class App extends Component {
   };
 
   percentHandler = (val) => {
+    localStorage.setItem('percentageOperator', JSON.stringify(...val, val));
     this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
     this.setState( {operator: "percent"} );
@@ -84,6 +96,7 @@ class App extends Component {
   };
 
   divideHandler = (val) => {
+    localStorage.setItem('quotientOperator', JSON.stringify(...val, val));
     this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
     this.setState( {operator: "divide"} );
@@ -93,6 +106,7 @@ class App extends Component {
   };
   
   rootHandler = (val) => {
+    localStorage.setItem('squareOperator', JSON.stringify(...val, val));
     this.setState( {firstNum: this.state.display } );
     this.setState( { display: "" } );
     this.setState( {operator: "square"} );
@@ -103,15 +117,20 @@ class App extends Component {
 
   Evaluate = (val) => {
     this.state.secondNum = this.state.display;
+    // this.setState( {secondNum: this.state.display} );
 
     if (this.state.operator === "add") {
-      this.setState ( { display: parseFloat(this.state.firstNum) +  
-        parseFloat(this.state.secondNum) } );
-        
+      this.setState ( { display: (parseFloat(this.state.firstNum) +  
+        parseFloat(this.state.secondNum)).toPrecision().slice(0,11) } );
+
         console.log(val);
         console.log('Equal');
         console.log(parseFloat(this.state.firstNum) +  
         parseFloat(this.state.secondNum));
+
+        localStorage.setItem('operator', JSON.stringify(...val, val))
+        localStorage.setItem('equalTo', JSON.parse(parseFloat(this.state.firstNum) +  
+        parseFloat(this.state.secondNum)));
     } 
     else if (this.state.operator === "minus") {
       this.setState ( { display: (parseFloat(this.state.firstNum) -  
@@ -121,6 +140,10 @@ class App extends Component {
         console.log('Equal');
         console.log(parseFloat(this.state.firstNum) -  
         parseFloat(this.state.secondNum));
+
+        localStorage.setItem('operator', JSON.stringify(...val, val))
+        localStorage.setItem('equalTo', JSON.parse(parseFloat(this.state.firstNum) -  
+        parseFloat(this.state.secondNum)));
     }
     else if (this.state.operator === "times") {
       this.setState ( { display: (parseFloat(this.state.firstNum) *  
@@ -130,6 +153,10 @@ class App extends Component {
         console.log('Equal');
         console.log(parseFloat(this.state.firstNum) *  
         parseFloat(this.state.secondNum));
+
+        localStorage.setItem('operator', JSON.stringify(...val, val))
+        localStorage.setItem('equalTo', JSON.parse(parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum)));
     }
     else if (this.state.operator === "divide") {
       this.setState( { display: (parseFloat(this.state.firstNum) / 
@@ -139,6 +166,10 @@ class App extends Component {
         console.log('Equal');
         console.log(parseFloat(this.state.firstNum) /  
         parseFloat(this.state.secondNum));
+
+        localStorage.setItem('operator', JSON.stringify(...val, val))
+        localStorage.setItem('equalTo', JSON.parse(parseFloat(this.state.firstNum) /  
+        parseFloat(this.state.secondNum)));
     }
     else if (this.state.operator === "percent") {
       this.setState( { display: ((parseFloat(this.state.firstNum) *  
@@ -148,8 +179,13 @@ class App extends Component {
         console.log('Equal');
         console.log((parseFloat(this.state.firstNum) *  
         parseFloat(this.state.secondNum)) / 100)
+
+        localStorage.setItem('operator', JSON.stringify(...val, val))
+        localStorage.setItem('equalTo', JSON.parse((parseFloat(this.state.firstNum) *  
+        parseFloat(this.state.secondNum)) / 100));
     }
-    else {
+    else {  
+      localStorage.setItem('answer', JSON.parse(Math.sqrt(this.state.firstNum))); 
       this.setState( { display: (Math.sqrt(this.state.firstNum)).toPrecision().slice(0,11) } );
 
       console.log(val);
