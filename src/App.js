@@ -128,7 +128,7 @@ class App extends Component {
         console.log(parseFloat(this.state.firstNum) +  
         parseFloat(this.state.secondNum));
 
-        localStorage.setItem('operator', JSON.stringify(...val, val))
+        localStorage.setItem('equalOperator', JSON.stringify(...val, val))
         localStorage.setItem('equalTo', JSON.parse(parseFloat(this.state.firstNum) +  
         parseFloat(this.state.secondNum)));
     } 

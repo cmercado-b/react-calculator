@@ -52,3 +52,46 @@ html {
     justify-content: center;
     flex-direction: row;
 }
+
+/* Mobile Responsive */
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .App {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        height: auto;
+        padding: 15px;
+    }
+    
+    .Container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #36454F;
+        border-width: 10px;
+        border-color: #dcdcdc;
+        border-style: outset inset outset inset;
+        height: 590px;
+        width: 480px;
+        border-radius: 15px;
+        box-shadow: 1px 1px 5px 5px #393c3f;
+    }
+    
+    .buttonContainer {
+        background-color: #36454F;
+        margin: 0;
+        height: 380px;
+        border-radius: 15px;
+        padding: 10px;
+    }
+    
+    .buttonRow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+    }
+}
